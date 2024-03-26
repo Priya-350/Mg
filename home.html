@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maangalyaa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mn">
+    <div class="photo">
+        <img src="Web/Mask Group 20.png" >
+
+    </div>
+
+    <div class="contain">
+        <img id="logo" src="Web/Logo.png" >
+        <p class="a"><quote>"A Successful Marriage Requires Falling in Love Many Times,</quote></p>
+        <p class="a"><quote>Always with The Same Person."</quote></p>
+        
+        <div class="form">
+            <form action="loading.html" method="get"  target="_parent" id="form" class="valid show" >
+            <h1>Welcome!</h1>
+            <label for="am">Email</label>
+            <br>
+            <input class="em" id="am" type="email" placeholder="enter your email" spellcheck="false" required ><img id="a" src="Web/ic_email.png">
+            <br>
+            <img class="wrong-img" src="Web/error.svg">
+            <h4 id="errormsg">Please enter a valid email</h4>
+           
+           <br>
+           <br><div id="pass" class="none">
+            <label for="password">Password</label> <br>
+            <input class="em" id="password"  type="password" placeholder="enter your password" required ><img id="b" src="Web/ic_password.png"> 
+            
+            <img class="wrong-img1" id="img3" src="Web/error.svg">
+            <h4 id="errormsg1" ></h4>
+            
+            </div>
+            <button type="submit" id="btn"><p>Login</p></button><br>
+            <a href="#" >Forgot Password?</a>
+        </form>
+        </div>
+    </div>
+
+    <div> 
+       
+    </div>
+</div>
+
+<script >
+var input=document.getElementById('am');
+var img1=document.getElementById('a');
+var input1=document.getElementById('password');
+var img2=document.getElementById('b');
+   var btn=document.getElementById("btn");
+   const form=document.getElementById('form');
+
+  
+ 
+
+input.onclick=function(){
+        
+       img1.src='Web/ic_email_active.png';
+ 
+}
+input.onblur=function(){
+
+img1.src='Web/ic_email.png';
+
+}
+
+input1.onclick=function(){
+
+img2.src='Web/ic_password_active.png';
+
+}
+input1.onblur=function(){
+
+img2.src='Web/ic_password.png';
+}
+
+
+const email=document.getElementById('am');
+const pattern=/^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+email.addEventListener('input',()=>{
+   if(email.value.match(pattern)){
+       form.classList.add('valid');
+       form.classList.remove('invalid');
+       input.style.borderColor="#22C32A";
+   }
+   else{
+
+form.classList.add('invalid');
+       form.classList.remove('valid');
+       input.style.borderColor="rgb(222, 20, 20) ";
+       input.focus();
+   }
+
+
+   if(email.value==""){
+       form.classList.add('valid');
+       form.classList.remove('invalid');
+       input.style.borderColor="rgb(160,123,3,255)";
+   }
+})
+  
+input1.onclick=function(){
+   input1.type="password";
+   img2.src="Web/eye-close.svg";
+
+}
+
+img2.onclick=function(){
+   
+   if(input1.type == "password"){
+       input1.type = "text";
+       img2.src="Web/eye-open.svg";
+   }
+   else{
+       input1.type=="password";
+       img2.src="Web/eye-close.svg";
+
+}
+}
+let alpha=/[a-zA-Z]/;
+ let  numbers=/[0-9]/;
+ let  schar=/[!,@,#,$,%,^,&,*,(,),_,-,+,=,?,~]/;
+  const text=document.getElementById("errormsg1");
+  const pass=document.getElementById("pass");
+  const img3=document.querySelector(".wrong-img1");
+
+   input1.addEventListener("keyup",()=>{
+         
+
+         if(input1.value==""){
+           pass.classList.remove("active");
+         pass.classList.add("none");
+         pass.classList.remove("medium");
+         pass.classList.remove("strong");
+         input1.style.borderColor="rgb(160,123,3,255)"
+         }
+        let val=input1.value;
+         if( val.match(alpha) || val.match(numbers) || val.match(schar)){
+           pass.classList.add("active");
+           text.textContent="password is weak";
+           pass.classList.remove("none");
+           pass.classList.remove("medium");
+         pass.classList.remove("strong");
+           input1.style.borderColor="rgb(222, 20, 20)";
+           img3.src="Web/error.svg";
+           
+         }
+          
+         if( val.match(alpha) && val.match(numbers) && val.match(schar) && val.length<=6){
+           pass.classList.remove("active");
+           text.textContent="password is medium";
+           pass.classList.remove("none");
+           input1.style.borderColor="rgb(214, 178, 34)";
+           pass.classList.add("medium");
+           pass.classList.remove("strong");
+           img3.src="Web/error1.svg";
+         }
+
+         if( val.match(alpha) && val.match(numbers) && val.match(schar) && val.length>6) {
+           pass.classList.remove("active");
+           text.textContent="password is strong";
+           pass.classList.remove("none");
+           input1.style.borderColor="rgb(119, 251, 0, 1)";
+           pass.classList.remove("medium");
+           img3.src="Web/tick.svg";
+           pass.classList.add("strong");
+         }
+         
+
+        
+   });
+
+
+   </script>
+
+</body>
+</html>
